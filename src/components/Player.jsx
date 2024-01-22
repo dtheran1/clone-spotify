@@ -1,5 +1,5 @@
-// import { usePlayerStore } from "@/store/playerStore";
 import { useEffect, useRef, useState } from "react";
+import { usePlayerStore } from "./store/playerStore";
 // import { Slider } from "./Slider";
 
 export const Pause = ({ className }) => (
@@ -27,10 +27,9 @@ export const Play = ({ className }) => (
 );
 
 export function Player() {
-  // const { currentMusic, isPlaying, setIsPlaying, volume } = usePlayerStore(
-  //   state => state
-  // );
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { currentMusic, isPlaying, setIsPlaying, volume } = usePlayerStore(
+    state => state
+  );
   const [currentSong, setCurrentSong] = useState(null);
   const audioRef = useRef();
 
@@ -44,23 +43,23 @@ export function Player() {
     setIsPlaying(!isPlaying);
   };
 
-  // useEffect(() => {
-  //   isPlaying ? audioRef.current.play() : audioRef.current.pause();
-  // }, [isPlaying]);
+  useEffect(() => {
+    isPlaying ? audioRef.current.play() : audioRef.current.pause();
+  }, [isPlaying]);
 
-  // useEffect(() => {
-  //   audioRef.current.volume = volume;
-  // }, [volume]);
+  useEffect(() => {
+    audioRef.current.volume = volume;
+  }, [volume]);
 
-  // useEffect(() => {
-  //   const { song, playlist, songs } = currentMusic;
-  //   if (song) {
-  //     const src = `/music/${playlist?.id}/0${song.id}.mp3`;
-  //     audioRef.current.src = src;
-  //     audioRef.current.volume = volume;
-  //     audioRef.current.play();
-  //   }
-  // }, [currentMusic]);
+  useEffect(() => {
+    const { song, playlist, songs } = currentMusic;
+    if (song) {
+      const src = `/music/${playlist?.id}/0${song.id}.mp3`;
+      audioRef.current.src = src;
+      audioRef.current.volume = volume;
+      audioRef.current.play();
+    }
+  }, [currentMusic]);
 
   return (
     <div className="flex flex-row justify-between w-full px-1 z-50">
@@ -71,14 +70,11 @@ export function Player() {
           <button className="bg-white rounded-full p-2" onClick={handleClick}>
             {isPlaying ? <Pause /> : <Play />}
           </button>
-          <SongControl audio={audioRef} />
           <audio ref={audioRef} />
         </div>
       </div>
 
-      <div className="grid place-content-center">
-        <VolumeControl />
-      </div>
+      <div className="grid place-content-center"></div>
     </div>
   );
 }
