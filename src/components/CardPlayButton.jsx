@@ -6,7 +6,7 @@ export function CardPlayButton({ id }) {
     usePlayerStore(state => state);
 
   const handleClick = () => {
-    setCurrentMusic({ plaList: { id } });
+    setCurrentMusic({ playList: { id } });
     setIsPlaying(!isPlaying);
   };
 

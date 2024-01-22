@@ -43,13 +43,13 @@ export function Player() {
     setIsPlaying(!isPlaying);
   };
 
-  useEffect(() => {
-    isPlaying ? audioRef.current.play() : audioRef.current.pause();
-  }, [isPlaying]);
+  // useEffect(() => {
+  //   isPlaying ? audioRef.current.play() : audioRef.current.pause();
+  // }, [isPlaying]);
 
-  useEffect(() => {
-    audioRef.current.volume = volume;
-  }, [volume]);
+  // useEffect(() => {
+  //   audioRef.current.volume = volume;
+  // }, [volume]);
 
   useEffect(() => {
     const { song, playlist, songs } = currentMusic;
