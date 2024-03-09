@@ -7,6 +7,8 @@ export const usePlayerStore = create((set, get) => ({
     song: null,
     songs: null,
   },
+  volume: 1,
+  setVolume: volume => set({ volume }),
   setIsPlaying: isPlaying => set({ isPlaying }),
   setCurrentMusic: currentMusic => set({ currentMusic }),
 }));
